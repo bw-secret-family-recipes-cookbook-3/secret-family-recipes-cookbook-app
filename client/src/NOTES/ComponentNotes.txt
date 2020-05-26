@@ -1,0 +1,55 @@
+
+	const onInputChange = (data) => {
+		console.log(data)
+		axiosWithAuth()
+			.post("", {
+				username: data.username,
+				password: data.password,
+			})
+
+			.then((res) => {
+				console.log(res)
+				localStorage.setItem("token", res.data.payload)
+				props.history, push("/")
+			})
+
+			.catch((err) => console.log(err))
+	}
+
+
+
+
+
+
+
+
+	const onInputChange = (e) => {
+		const name = e.target.name
+		const value = e.target.value
+
+		yup.reach(loginSchema, name)
+			.validate(value)
+			.then((valid) => {
+				setLoginErrors({
+					...loginErrors,
+					[name]: "",
+				})
+			})
+			.catch((err) => {
+				setLoginErrors({
+					...loginErrors,
+					[name]: err.errors[0],
+				})
+			})
+
+		setLoginValues({
+			...loginValues,
+			[name]: value,
+		})
+	}
+
+	useEffect(() => {
+		loginSchema.isValid(loginValues).then((valid) => {
+			setFormDisabled(!valid)
+		})
+	}, [loginValues])
