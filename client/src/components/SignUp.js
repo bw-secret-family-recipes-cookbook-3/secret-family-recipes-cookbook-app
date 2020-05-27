@@ -2,13 +2,13 @@
 import React, { useState, useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
 //import Recaptcha from "react-recaptcha";
-// import { axiosWithAuth } from "../utils/axiosWithAuth";
+import { axiosWithAuth } from "../Auth/axiosWithAuth";
 
 import * as yup from "yup";
 
 import { Styles } from "./Styles";
 
-const API_KEY = process.env.REACT_APP_API_KEY;
+// const API_KEY = process.env.REACT_APP_API_KEY;
 
 const initialSignUpValues = {
   username: "",
@@ -58,9 +58,9 @@ function SignUp() {
   const [formDisabled, setFormDisabled] = useState(true);
   const history = useHistory();
 
-  const recaptchaLoaded = () => {
-    console.log("captcha loaded");
-  };
+  // const recaptchaLoaded = () => {
+  //   console.log("captcha loaded");
+  // };
 
   // POST / api / auth / instructors / register
   // POST / api / auth / clients / register
@@ -71,23 +71,32 @@ function SignUp() {
     if (isVerified) {
       const {
         username,
-        firstName,
-        lastName,
-        email,
+        // firstName,
+        // lastName,
+        // email,
         password,
       } = signUpValues;
 
       const values = {
         username,
         password,
-        first_name: firstName,
-        last_name: lastName,
-        email,
+        // first_name: firstName,
+        // last_name: lastName,
+        // email,
       };
+      axiosWithAuth()
+          .post("/api/auth/register", values)
+          .then((res) => {
+            console.log(res);
+            history.push("/login");
+          })
+          .catch((err) => {
+            console.log(err);
+          });
 
       // sign up method goes here
-    } else {
-      alert("Please verify that you are a human");
+    // } else {
+    //   alert("Please verify that you are a human");
     }
   };
 
@@ -148,7 +157,7 @@ function SignUp() {
           </label>
           <div className="errors">{signUpErrors.username}</div>
 
-          <label>
+          {/* <label>
             First Name:&nbsp;
             <input
               onChange={onInputChange}
@@ -182,7 +191,7 @@ function SignUp() {
           <div className="errors">{signUpErrors.email}</div>
 
           <div className="errors">{signUpErrors.phoneNumber}</div>
-
+        */}
           <label>
             Password:&nbsp;
             <input

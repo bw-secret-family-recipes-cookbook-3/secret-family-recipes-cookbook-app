@@ -10,6 +10,9 @@ import Navbar from './components/Navbar';
 import SignUp from './components/SignUp'
 
 import { Route, Link, useParams, useHistory } from "react-router-dom";
+import { axiosWithAuth } from './Auth/axiosWithAuth';
+
+const baseUrl = 'https://bw-secret-recipe.herokuapp.com/'
 
 const App = () => {
   const [recipes, setRecipes] = useState([])
@@ -20,7 +23,7 @@ const App = () => {
   const params = useParams();
  
   const getRecipes = () => {
-    axios
+    axiosWithAuth()
       .get('/api/recipes')
       .then(res => {
         console.log(res)
