@@ -34,7 +34,7 @@ const UpdateRecipe = ({food}) => {
   const handleSubmit = event =>{
     event.preventDefault()
     axiosWithAuth()
-        .put(`api/recipes/${id}`, recipe)
+        .put(`/api/recipes/${id}`, recipe)
         .then(res =>{
             // console.log(res.data)
             setRecipe(initialRecipe)

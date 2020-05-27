@@ -25,7 +25,8 @@ const App = () => {
  
   const getRecipes = () => {
     axiosWithAuth()
-      .get('/api/recipes')
+   
+      .get('/api/recipes/my-recipes')
       .then(res => {
         console.log(res)
         setRecipes(res.data)
@@ -51,7 +52,7 @@ const App = () => {
   //   fetchRecipe(params.id);
   // }, [params.id]);
 
-  const filteredRecipes = recipes.filter(recipe => recipe.title.toLowerCase().includes(searchField.toLowerCase()))
+  // const filteredRecipes = recipes.filter(recipe => recipe.title.toLowerCase().includes(searchField.toLowerCase()))
 
   const goToRecipe = (item) => {
     console.log(item)
@@ -77,7 +78,7 @@ const App = () => {
           placeholder='Search Recipes'
           onChange={e => setSearchField(e.target.value)}
           />
-          <Customers recipes={filteredRecipes} goToRecipe={goToRecipe} />
+          <Customers recipes={recipes} goToRecipe={goToRecipe} />
         </Route>
 
         <Route path="/recipes/:id">

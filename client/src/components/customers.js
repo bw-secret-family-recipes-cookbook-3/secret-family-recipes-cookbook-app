@@ -6,7 +6,7 @@ import { Grid } from '@material-ui/core';
 
 
 const Customers = (props) => {
-  
+  console.log(props)
  
 
   return (

@@ -49,7 +49,7 @@ export const Styles = styled.div`
     cursor: pointer;
   }
   button:hover {
-    background: #FF9233;
+    background: #c4c4c4;
   }
 `
 
@@ -61,7 +61,7 @@ export const NavStyles = styled.div`
   }
   
   header {
-    background: #FF9233;
+    background: #c4c4c4;
     
   }
 
