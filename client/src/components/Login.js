@@ -32,7 +32,7 @@ function Login() {
     const onInputChange = (e) => {
         e.preventDefault()
         axiosWithAuth()
-            .post("/login", loginValues)
+            .post("/api/auth/login", loginValues)
             .then((res) => {
                 console.log(res)
                 localStorage.setItem("token", JSON.stringify(res.data.token))
