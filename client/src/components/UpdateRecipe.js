@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 import axios from 'axios';
 import { Styles } from './Styles';
-import axiosWithAuth from '../Auth/axiosWithAuth';
+import { axiosWithAuth } from '../Auth/axiosWithAuth';
 
 const initialRecipe = {
     title: "",

@@ -7,7 +7,8 @@ import AddRecipe from './components/AddRecipe';
 import RecipeCard from './components/RecipeCard';
 import Login from './components/Login';
 import Navbar from './components/Navbar';
-import SignUp from './components/SignUp'
+import SignUp from './components/SignUp';
+import UpdateRecipe from './components/UpdateRecipe';
 
 import { Route, Link, useParams, useHistory } from "react-router-dom";
 import { axiosWithAuth } from './Auth/axiosWithAuth';
@@ -85,6 +86,10 @@ const App = () => {
 
         <Route path="/add-recipe">
           <AddRecipe setRecipes={setRecipes} />
+        </Route>
+
+        <Route path='/update-recipe/:id'>
+          <UpdateRecipe food={food} />
         </Route>
 
       </div>
