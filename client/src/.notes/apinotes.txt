@@ -1,0 +1,69 @@
+
+Base Url:
+https://bw-secret-recipe.herokuapp.com/
+
+** Status Codes
+
+200 Successful
+
+400 Bad Request
+
+401 Unauthorized
+
+404 Not Found
+
+500 Server Error
+
+POST to /api/auth/register expects:
+{
+  "username": "username",
+  "password": "password"
+}
+Returns message
+
+POST to /api/auth/login expects:
+{
+  "username": "email",
+  "password": "password"
+}
+Returns message, token and user_id.
+
+The following endpoints require a JWT => axiosWithAuth( )
+GET to /api/recipes
+Returns all recipes
+
+GET to /api/recipes?category=${categoryName}
+Returns all recipes with that category name
+
+GET to /api/recipes/my-recipes
+Returns recipes tied to the user logged in
+
+GET to /api/recipes/:id
+id of the recipe you want
+
+Returns recipe linked to that recipe_id
+
+POST to /api/recipes
+expects:
+
+{
+    "title": "title",
+    "source": "source",
+    "ingredients": "ingredients",
+    "instructions": "instructions",
+    "category": "category"
+}
+PUT to /api/recipes/:id
+id must be the recipe_id
+
+expects:
+
+{
+  "title": "title",
+  "source": "source",
+  "ingredients" : "ingredients",
+  "instructions" : "instruction",
+  "category":"category"
+}
+DELETE to /api/recipes/:id
+id must be the recipe_id
