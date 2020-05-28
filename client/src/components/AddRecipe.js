@@ -3,11 +3,14 @@ import { useForm } from "react-hook-form";
 import { axiosWithAuth } from "../Auth/axiosWithAuth"; 
 import '../App.css';
 import axios from 'axios';
+import { Styles } from './Styles';
+import { useHistory } from 'react-router-dom';
 
 function AddRecipe() {
+  const { push } = useHistory()
   const {
     register, 
-      handleSubmit,
+    handleSubmit,
     errors
     } = useForm();
     
@@ -17,15 +20,16 @@ function AddRecipe() {
     .post("/api/recipes", recipe)
     .then(res => {
       console.log(res)
+      push('/')
     })
     .catch(err => console.log('error',err))
     }
     
   return (
-    <div className="border">
+    <Styles>
     <h2>ADD A RECIPE</h2>
       <form onSubmit={handleSubmit(onSubmit)}>
-      <label>title:
+      <label>Title:
           <input id='title' name='title'
             type='text' placeholder='title' 
             ref={register({
@@ -34,14 +38,15 @@ function AddRecipe() {
                   />
                   {errors.title && <p>Title is required</p>}
             </label>
-            <label>source:
+            <label>Source:
                 <input id='source' name='source' type='text'
+                placeholder='source' 
                 ref={register({
                     required: 'Required'
                 })}
                 />
                 </label>
-      <label>ingredients:
+      <label>Ingredients:
           <input id='ingredients' name='ingredients'
             type='text' placeholder='ingredients' 
             ref={register({
@@ -50,30 +55,34 @@ function AddRecipe() {
                   />
                   {errors.ingredients && <p>Ingredients is required</p>}
             </label>
-            <label>instructions:
-                <input id='instructions' name='instructions' type='text'
+            <label>Instructions:
+                <input id='instructions' name='instructions'
+              type='text' placeholder='instructions' 
                 ref={register({
                     required: 'Required'
                 })}
                   />
                   {errors.instructions && <p>Instructions is required</p>}
                 </label>
-            <label>category:
-                <input id='category' name='category' type='text'
+            <label>Category:
+                <input id='category' name='category'
+                type='text' placeholder='category' 
                 ref={register({
                     required: 'Required'
                 })}
                   />
                   {errors.category && <p>Category is required</p>}
                 </label>
-                {/* <label>recipeImg:
-                <input type="file" name="recipeImg" ref={register({
+                <label>Recipe Image:
+                <input type="text" name="recipeImage"
+                placeholder='image url'  ref={register({
                   required:"Required"
-                })}/>
-                </label> */}
+                })} />
+                {errors.recipeImage && <p>Image is required</p>}
+                </label>
              <button type='submit'>Submit</button>
           </form>
-    </div>
+    </Styles>
   )
 }
 export default AddRecipe;

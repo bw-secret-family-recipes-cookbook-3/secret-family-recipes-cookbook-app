@@ -30,13 +30,13 @@ import { Button } from 'react-bootstrap';
 // }));
 
 export default function RecipeCard({food}) {
-  const { title, imageUrl, source, instructions, ingredients, category } = food;
+  const { title, recipeImage, source, instructions, ingredients, category } = food;
   const { push } = useHistory();
 
   const deleteRecipe = (id) => {
     
     axiosWithAuth()
-      .delete(`api/recipes/${id}`)
+      .delete(`/api/recipes/${id}`)
       .then((res) => {
         console.log(res.data)
         push('/')
@@ -49,7 +49,7 @@ export default function RecipeCard({food}) {
     <div className='recipe-card'>
     
       <div>
-        <img src={imageUrl}  className="image-class" />
+        <img src={recipeImage} className="image-class" />
       </div>
 
       <div className="text-class">

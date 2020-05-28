@@ -16,7 +16,7 @@ const initialRecipe = {
 
 const UpdateRecipe = ({food}) => {
   console.log({ food })
-  const { title, imageUrl, source, instructions, ingredients, category } = food
+  const { title, recipeImage, source, instructions, ingredients, category } = food
   const { push } = useHistory()
   const [recipe, setRecipe] = useState(initialRecipe)
   const {id} = useParams()
@@ -57,8 +57,8 @@ const UpdateRecipe = ({food}) => {
                         value={recipe.title}
                         type="text"
                         placeholder="Title"
-              onChange={handleChange}
-              value={title || ''}
+                        onChange={handleChange}
+                        value={title || ''}
                     />
                 </label>
                 <label>Source:&nbsp;
@@ -103,12 +103,12 @@ const UpdateRecipe = ({food}) => {
         </label>
         <label>Image URL:&nbsp;
                     <input 
-                        name="imageUrl"
-                        value={recipe.imageUrl}
+                        name="recipeImage"
+                        value={recipe.recipeImage}
                         type="text"
                         placeholder="Image URL"
               onChange={handleChange}
-              value={imageUrl || ''}
+              value={recipeImage || ''}
                     />
                 </label>
                 

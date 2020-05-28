@@ -2,16 +2,20 @@ import React, { useState, useEffect }from 'react';
 import { useForm } from "react-hook-form";
 import '../App.css';
 import axios from 'axios';
-import { Styles } from "./Styles"
+import { Styles } from "./Styles";
+import { Link, useHistory } from "react-router-dom"
 
 
- function Login() {
+function Login() {
+  const { push } = useHistory() 
+
   const onSubmit = user => {
     axios.post("https://bw-secret-recipe.herokuapp.com/api/auth/login", user)
     .then(res =>{
       console.log(res)
       localStorage.setItem("token", res.data.token)
       localStorage.setItem("user_id", res.data.user_id)
+      push(`/`)
     })
     .catch(err => console.log("error 2", err))
   }

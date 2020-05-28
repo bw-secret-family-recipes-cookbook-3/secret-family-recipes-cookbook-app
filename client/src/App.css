@@ -63,3 +63,43 @@ input[type=text] {
   margin: 8px 0;
   box-sizing: border-box;
 }
+
+
+{/* image styles*/}
+.text-class {
+  float:left;
+  width: 45vw;
+  height:20px;
+  margin: 10px;
+  padding: 10px;
+}
+
+.image-class {
+  float:left;
+  width: 50vw;
+  height: 70vh;
+  margin: 10px;
+}
+.recipe-card {
+  text-align: left;
+}
+.recipe-card-edit {
+  margin: 10px;
+}
+.recipe-card-delete {
+  background-color: red !important;
+}
+@media only screen and (max-width: 700px) {
+  .text-class {
+    
+    width: 90vw;
+    height:50px;
+  }
+  
+  .image-class {
+   
+    width: 90vw;
+    height: 70vh;
+    margin: 10px;
+  }
+}

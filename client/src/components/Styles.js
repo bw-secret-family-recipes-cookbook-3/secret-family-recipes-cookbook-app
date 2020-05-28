@@ -10,6 +10,9 @@ export const Styles = styled.div`
     text-align: center;
     color: black;
   }
+  h2 {
+    margin-top: 0.5rem;
+  }
   p {
     color: red;
   }
@@ -18,7 +21,7 @@ export const Styles = styled.div`
     display: flex;
     flex-direction: column;
     width: 460px;
-    margin: 100px auto;
+    margin: 50px auto;
     border: 1px solid black;
     padding: 10px;
     border-radius: 5px;

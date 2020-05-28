@@ -63,7 +63,7 @@ const CardBootStrap = (props) => {
         
         <CardMedia
           className={classes.media}
-          image={props.recipe.imageUrl}
+          image={props.recipe.recipeImage}
           title="Paella dish"
         />
         <Card.Body>
