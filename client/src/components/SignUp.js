@@ -2,9 +2,11 @@ import React, { useState, useEffect }from 'react';
 import { useForm } from "react-hook-form";
 import '../App.css';
 import axios from 'axios';
-import { Styles } from "./Styles"
+import { Styles } from "./Styles";
+import { useHistory } from 'react-router-dom';
 
 function Signup() {
+  const { push } = useHistory();
   const {
     register, 
     handleSubmit,
@@ -15,6 +17,7 @@ function Signup() {
     axios.post("https://bw-secret-recipe.herokuapp.com/api/auth/register", newUser)
     .then(res => {
       console.log(res)
+      push('/')
     })
     .catch(err => console.log('error',err))
   }

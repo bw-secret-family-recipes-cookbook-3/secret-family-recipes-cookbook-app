@@ -39,8 +39,8 @@ const App = () => {
   }, [])
 
   // const fetchRecipe = (id) => {
-  //   axios
-  //     .get(`http://localhost:5000/api/recipes/${id}`)
+  //   axiosWithAuth()
+  //     .get(`/api/recipes/${id}`)
   //     .then((res) => {
   //       console.log(res)
   //       setRecipe(res.data)
