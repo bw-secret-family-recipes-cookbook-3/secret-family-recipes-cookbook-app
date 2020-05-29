@@ -17,6 +17,7 @@ export const addRecipeReducer = (state = initialState, { type, payload }) => {
 				...state,
 				addRecipe: true,
 			}
+
 		case ADD_RECIPES_SUCESS:
 			return {
 				...state,

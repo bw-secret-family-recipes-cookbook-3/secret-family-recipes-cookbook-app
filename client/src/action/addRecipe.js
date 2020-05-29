@@ -1,6 +1,6 @@
 import {
 	ADD_RECIPE_START,
-	ADD_RECIPES_SUCCESS,
+	ADD_RECIPES_SUCESS,
 	ADD_RECIPES_FAILURE,
 } from "./index"
 
@@ -9,10 +9,10 @@ import axiosWithAuth from "../utils/axiosWithAuth"
 export const addRecipe = (recipe) => (dispatch) => {
 	dispatch({ type: ADD_RECIPE_START })
 	axiosWithAuth()
-		.post(`/recipes/${localStorage.getItem("id")}/user`, recipe)
+		.post(`/recipes`, recipe)
 		.then((res) => {
 			console.log("It works", res)
-			dispatch({ type: ADD_RECIPES_SUCCESS, payload: recipe })
+			dispatch({ type: ADD_RECIPES_SUCESS, payload: recipe })
 		})
 
 		.catch((err) => {

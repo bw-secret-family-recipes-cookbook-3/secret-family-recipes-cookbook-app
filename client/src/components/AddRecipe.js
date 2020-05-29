@@ -1,118 +1,129 @@
-import React, { useState, useEffect } from "react"
-import { useHistory } from "react-router-dom"
-import axios from "axios"
+import React, { useState } from "react"
+import { Link } from "react-router-dom"
+// import Select from "@material-ui/core/Select";
+import InputLabel from "@material-ui/core/InputLabel"
+import TextField from "@material-ui/core/TextField"
+import Button from "@material-ui/core/Button"
+import axiosWithAuth from "../utils/axiosWithAuth"
+// import MenuItem from "@material-ui/core/MenuItem";
+import { connect } from "react-redux"
+import { addRecipe } from "../action/addRecipe"
 import { Styles } from "./Styles"
 
 const initialState = {
-	id: Date.now(),
 	title: "",
-	creator: "",
+	source: "",
 	ingredients: "",
-	directions: "",
+	instructions: "",
 	category: "",
-	user_id: localStorage.getItem("id"),
 }
 
 const AddRecipe = (props) => {
-	console.log(props)
-	const { push } = useHistory()
-	const [recipe, setRecipe] = useState(initialRecipe)
+	const [recipeToAdd, setRecipeToAdd] = useState(initialState)
 
-	const handleChange = (event) => {
-		let value = event.target.value
-
-		setRecipe({
-			...recipe,
-			[event.target.name]: value,
+	const onChange = (e) => {
+		setRecipeToAdd({
+			...recipeToAdd,
+			[e.target.name]: e.target.value,
 		})
 	}
 
-	const handleSubmit = (event) => {
-		event.preventDefault()
-		axios
-			.post(`http://localhost:5000/api/recipes/`, recipe)
-			.then((res) => {
-				// console.log(res.data)
-				setRecipe(initialRecipe)
-				props.setRecipes(res.data)
-				push(`/`)
-			})
-			.catch((err) => {
-				console.log(err)
-			})
+	const handleSubmit = (e) => {
+		e.preventDefault()
+		props.addRecipe(recipeToAdd)
+		setRecipeToAdd("")
+
+		props.history.push("/user-recipes")
+		console.log(recipeToAdd)
 	}
 
 	return (
-		<div className="add-form-container">
-			<Styles>
-				<form className="add-form" on onSubmit={handleSubmit}>
-					<h1>Add Recipe</h1>
-					<label>
-						Title:&nbsp;
-						<input
+		<Styles>
+			<div>
+				<div className="tabs-container">
+					<Link
+						className="tab"
+						href="https://bw1-marketing-page.now.sh/"
+					>
+						Home
+					</Link>
+					<Link className="tab" to="/user-recipes">
+						My Recipes
+					</Link>
+					<Link className="tab active" to="/add-recipe">
+						Add Recipe
+					</Link>
+				</div>
+				<div className="entry-container">
+					<h2>Add a Recipe</h2>
+					<form onSubmit={handleSubmit}>
+						<br />
+						<TextField
+							required
+							label="title"
+							id="title"
 							name="title"
-							value={recipe.title}
-							type="text"
-							placeholder="Title"
-							onChange={handleChange}
+							value={recipeToAdd.title}
+							onChange={onChange}
 						/>
-					</label>
-					<label>
-						Source:&nbsp;
-						<input
+						<br />
+						<TextField
+							required
+							label="source"
+							id="source"
 							name="source"
-							value={recipe.source}
-							type="text"
-							placeholder="Source"
-							onChange={handleChange}
+							value={recipeToAdd.source}
+							onChange={onChange}
 						/>
-					</label>
-					<label>
-						Ingredients:&nbsp;
-						<input
+						<br />
+						<TextField
+							required
+							label="ingredients"
+							id="ingredients"
 							name="ingredients"
-							value={recipe.ingredients}
-							type="text"
-							placeholder="Ingredients"
-							onChange={handleChange}
+							value={recipeToAdd.ingredients}
+							onChange={onChange}
 						/>
-					</label>
-					<label>
-						Instructions:&nbsp;
-						<input
+						<br />
+						<TextField
+							multiline
+							required
+							label="instructions"
+							id="instructions"
 							name="instructions"
-							value={recipe.instructions}
-							type="text"
-							placeholder="Instructions"
-							onChange={handleChange}
+							value={recipeToAdd.instructions}
+							onChange={onChange}
 						/>
-					</label>
-					<label>
-						Category:&nbsp;
-						<input
-							name="category"
-							value={recipe.category}
-							type="text"
-							placeholder="Category"
-							onChange={handleChange}
-						/>
-					</label>
-					<label>
-						Image URL:&nbsp;
-						<input
-							name="imageUrl"
-							value={recipe.imageUrl}
-							type="text"
-							placeholder="Image URL"
-							onChange={handleChange}
-						/>
-					</label>
+						<br />
 
-					<button className="update-form-button">Add</button>
-				</form>
-			</Styles>
-		</div>
+						<TextField
+							required
+							label="category"
+							id="category"
+							name="category"
+							value={recipeToAdd.category}
+							onChange={onChange}
+						/>
+						<br />
+						<br />
+						<Button
+							type="submit"
+							variant="contained"
+							color="primary"
+						>
+							Submit
+						</Button>
+					</form>
+				</div>
+			</div>
+		</Styles>
 	)
 }
 
-export default AddRecipe
+const mapStateToProps = (state) => {
+	return {
+		addRecipe: state.addRecipe,
+	}
+}
+
+export default connect(mapStateToProps, { addRecipe })(AddRecipe)

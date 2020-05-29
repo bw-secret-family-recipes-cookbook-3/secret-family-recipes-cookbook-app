@@ -6,14 +6,14 @@ import {
 
 import axiosWithAuth from "../utils/axiosWithAuth"
 
-const deleteRecipes = (id) => (dispatch) => {
-	dispatch({ type: DELETE_RECIPE_START })
-	return axiosWithAuth()
+const deleteRecipes = (id, history) => (dispatch) => {
+	axiosWithAuth()
 		.delete(`/recipes/${id}`)
 		.then((res) => {
 			console.log(res)
+			dispatch({ type: DELETE_RECIPE_START })
 			dispatch({ type: DELETE_RECIPE_SUCCESS, payload: id })
-			document.location.reload(true)
+			history.push("/user-recipes")
 		})
 
 		.catch((err) => {

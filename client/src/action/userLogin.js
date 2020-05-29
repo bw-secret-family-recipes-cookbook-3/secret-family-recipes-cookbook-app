@@ -8,11 +8,11 @@ const login = (user, history) => (dispatch) => {
 		.post("/auth/login", user)
 		.then((res) => {
 			console.log(res)
-			localStorage.setItem("token", res.data.message)
+			localStorage.setItem("token", res.data.token)
 			localStorage.setItem("id", res.data.user_id)
 
 			dispatch({ type: LOGIN_SUCCESS, payload: res.data })
-			history.push("/home")
+			history.push("/user-recipes")
 		})
 
 		.catch((err) => {

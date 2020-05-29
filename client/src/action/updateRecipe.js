@@ -1,20 +1,25 @@
 import {
 	UPDATE_RECIPE_START,
 	UPDATE_RECIPE_SUCCESS,
-	UPDATE_RECIPE_SUCCESS,
 	UPDATE_RECIPE_FAILURE,
+	ADD_RECIPE_EDIT,
 } from "./index"
 
 import axiosWithAuth from "../utils/axiosWithAuth"
 
-const updateRecipe = (item) => (dispatch) => {
-	dispatch({ type: UPDATE_RECIPE_START })
+export const recipeToEdit = (recipe, history) => (dispatch) => {
+	console.log(recipe, "i am the recipe being eddited")
+	dispatch({ type: ADD_RECIPE_EDIT, payload: recipe })
+	history.push(`/update-form/${recipe}`)
+}
 
-	return axiosWithAuth()
-		.put(`/recipes/${item.id}`, item)
+const updateRecipe = (item, id, history) => (dispatch) => {
+	axiosWithAuth()
+		.put(`/recipes/${id}`, item)
 		.then((res) => {
+			dispatch({ type: UPDATE_RECIPE_START })
 			console.log(res.data)
-			dispatch({ type: UPDATE_RECIPE_SUCCESS, payload: item })
+			dispatch({ type: UPDATE_RECIPE_SUCCESS, payload: res.data }) //maybe propblem
 		})
 
 		.catch((err) => {

@@ -10,7 +10,7 @@ const getRecipes = () => (dispatch) => {
 	dispatch({ type: FETCH_RECIPES_START })
 
 	return axiosWithAuth()
-		.get(`/recipes/:id`)
+		.get(`/recipes/$`)
 		.then((res) => {
 			console.log("getting food instructions", res.data)
 			dispatch({ type: FETCH_RECIPES_SUCCESS, payload: res.data })

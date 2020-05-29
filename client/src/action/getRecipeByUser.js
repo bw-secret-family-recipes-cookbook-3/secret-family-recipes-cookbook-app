@@ -8,10 +8,10 @@ import axiosWithAuth from "../utils/axiosWithAuth"
 
 const getRecipesByUser = () => (dispatch) => {
 	dispatch({ type: FETCH_RECIPESBYUSER_START })
-	return axiosWithAuth()
-		.get(`/recipes/${localStorage.getItem("id")}/user`)
+	axiosWithAuth()
+		.get("/api/recipes/my-recipes")
 		.then((res) => {
-			console.log("Getting peopls stuff")
+			console.log("Getting my stuff")
 			dispatch({ type: FETCH_RECIPESBYUSER_SUCCESS, payload: res.data })
 		})
 

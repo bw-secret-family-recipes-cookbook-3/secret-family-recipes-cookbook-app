@@ -7,13 +7,11 @@ import {
 const initialState = {
 	recipes: [
 		{
-			id: null,
-			title: "",
-			creator: "",
-			ingredients: "",
-			directions: "",
-			category: "",
-			user_id: localStorage.getItem("id"),
+			title: "title",
+			source: "source",
+			ingredients: "ingredients",
+			instructions: "instructions",
+			category: "category",
 		},
 	],
 	fetchingRecipesList: false,
