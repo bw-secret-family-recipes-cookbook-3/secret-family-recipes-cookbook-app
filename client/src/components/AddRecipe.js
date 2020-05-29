@@ -1,10 +1,9 @@
 import React, { useState } from "react"
 import { Link } from "react-router-dom"
 // import Select from "@material-ui/core/Select";
-import InputLabel from "@material-ui/core/InputLabel"
 import TextField from "@material-ui/core/TextField"
 import Button from "@material-ui/core/Button"
-import axiosWithAuth from "../utils/axiosWithAuth"
+
 // import MenuItem from "@material-ui/core/MenuItem";
 import { connect } from "react-redux"
 import { addRecipe } from "../action/addRecipe"

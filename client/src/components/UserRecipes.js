@@ -9,23 +9,10 @@ import deleteRecipe from "../action/deleteRecipe"
 import { recipeToEdit } from "../action/updateRecipe"
 import { Styles } from "./Styles"
 
-// const initialState = {
-// 	title: "title",
-// 	source: "source",
-// 	ingredients: "ingredients",
-// 	instructions: "instruction",
-// 	category: "category",
-// }
-
 const UserRecipes = (props) => {
 	const [usersRecipes, setUsersRecipes] = useState([])
 	const history = useHistory()
 	const dispatch = useDispatch()
-
-	// useEffect(() => {
-	// 	console.log("Id Here", props.user_id)
-	//   props.getRecipesByUser(props.user_id)
-	// }, [])
 
 	useEffect(() => {
 		axiosWithAuth()
@@ -36,12 +23,6 @@ const UserRecipes = (props) => {
 			})
 			.catch((err) => console.log(err))
 	}, [])
-
-	// let myRecipes = []
-
-	// if (props.recipesByUser.length > 1) {
-	// 	myRecipes = props.recipesByUser
-	// }
 
 	return (
 		<Styles>
