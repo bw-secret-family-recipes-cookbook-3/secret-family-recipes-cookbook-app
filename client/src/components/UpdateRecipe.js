@@ -1,20 +1,17 @@
-import React, { useState, useEffect } from "react"
+import React from "react"
 import { connect, useDispatch } from "react-redux"
-import { Link, useParams, useHistory } from "react-router-dom"
-import axios from "axios"
+import { Link, useHistory } from "react-router-dom"
+
 import { useForm } from "react-hook-form"
 import { Styles } from "./Styles"
 
 // STYLES IMPORT
 
-import InputLabel from "@material-ui/core/InputLabel"
-import TextField from "@material-ui/core/TextField"
 import Button from "@material-ui/core/Button"
 
 import updateRecipe from "../action/updateRecipe"
 
 const UpdateRecipe = (props) => {
-	const { id } = useParams()
 	const history = useHistory()
 	const dispatch = useDispatch()
 
@@ -28,36 +25,6 @@ const UpdateRecipe = (props) => {
 		props.history.push("/user-recipes")
 		console.log(props.recipe_id, "recipe.id")
 	}
-	// const [state, setState] = useState({
-	// 	title: "title",
-	// 	source: "source",
-	// 	ingredients: "ingredients",
-	// 	instructions: "instruction",
-	// 	category: "category",
-	// })
-
-	// const changeHandler = (e) => {
-	// 	e.persist()
-	// 	setState({ ...state, [e.target.name]: e.target.value })
-	// }
-
-	//const handleSubmit = (e) => {
-	//	e.preventDefault()
-	//	console.log("I am submitted", state)
-	//
-	//	props.updateRecipe(state)
-	//
-	//
-	//	setState({
-	//		title: "title",
-	//		source: "source",
-	//		ingredients: "ingredients",
-	//		instructions: "instructions",
-	//		category: "category",
-	//	})
-	//
-	//	props.history.push("/recipes")
-	//}
 
 	return (
 		<Styles>

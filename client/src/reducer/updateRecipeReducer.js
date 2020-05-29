@@ -4,7 +4,6 @@ import {
 	UPDATE_RECIPE_FAILURE,
 	ADD_RECIPE_EDIT,
 } from "../action"
-import { BottomNavigationAction } from "@material-ui/core"
 
 const initialState = {
 	recipe: {

@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react"
+import React from "react"
 
 import "./App.css"
 
 // COMPONENTS IMPORTS
-import Home from "./components/Home"
-import { Route, Switch, Link } from "react-router-dom"
+
+import { Route, Switch } from "react-router-dom"
 import { PrivateRoute } from "./utils/PrivateRoute"
 import SignUp from "./components/SignUp"
 import Login from "./components/Login"
@@ -45,11 +45,7 @@ function App() {
 								<Route exact path="/login" component={Login} />
 
 								{/* PRIVATE ROUTES */}
-								<PrivateRoute
-									exact
-									path="/home"
-									component={Home}
-								/>
+
 								<PrivateRoute
 									exact
 									path="/user-recipes"

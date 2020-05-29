@@ -6,7 +6,6 @@ import updateRecipe from "../action/updateRecipe"
 import deleteRecipe from "../action/deleteRecipe"
 import { recipeToEdit } from "../action/updateRecipe"
 import getRecipes from "../action/getRecipes"
-import CardBootStrap from "./RecipeCard"
 import { Styles } from "./Styles"
 
 const initialState = {
